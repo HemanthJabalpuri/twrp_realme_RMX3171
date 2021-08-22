@@ -1,8 +1,11 @@
+on init
+    mkdir /mnt/vendor/persist
+    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw
+
 on fs
     install_keyring
-    mkdir /mnt/vendor/persist 0777 system system
     setprop crypto.ready 1
-    write /sys/devices/platform/odm/odm:oppo_charger/power_supply/usb/otg_switch 1
+    write /sys/class/power_supply/usb/otg_switch 1
 
 service keystore_auth /sbin/keystore_auth
     oneshot
@@ -45,15 +48,6 @@ service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
     disabled
     seclabel u:r:recovery:s0
 
-service vendor.vibrator-1-0 /sbin/android.hardware.vibrator@1.0-service
-    class hal
-    user root
-    group root input
-    seclabel u:r:recovery:s0
-
-on boot
-    start vendor.vibrator-1-0
-
 on property:hwservicemanager.ready=true
     start hal_cryptoeng_oppo
     start mobicore
@@ -83,8 +77,3 @@ on property:twrp.decrypt.done=true
     stop hwservicemanager
     stop keymaster-4-0
     stop gatekeeper-1-0
-
-on property:sys.usb.config=fastboot
-    start servicemanager
-    start hwservicemanager
-    restart fastbootd

@@ -1,0 +1,24 @@
+/boot           emmc    /dev/block/platform/bootdevice/by-name/boot
+/recovery       emmc    /dev/block/platform/bootdevice/by-name/recovery
+/cache          ext4    /dev/block/platform/bootdevice/by-name/cache
+/persist        ext4    /dev/block/platform/bootdevice/by-name/persist     flags=backup
+/metadata       ext4    /dev/block/platform/bootdevice/by-name/metadata
+/dtbo           emmc    /dev/block/platform/bootdevice/by-name/dtbo        flags=backup
+/vbmeta         emmc    /dev/block/platform/bootdevice/by-name/vbmeta      flags=backup;flashimg
+/tee1           emmc    /dev/block/platform/bootdevice/by-name/tee1        flags=backup
+/tee2           emmc    /dev/block/platform/bootdevice/by-name/tee2        flags=backup
+
+/lk             emmc    /dev/block/platform/bootdevice/by-name/lk          flags=backup
+/logo           emmc    /dev/block/platform/bootdevice/by-name/logo        flags=backup
+/expdb          emmc    /dev/block/platform/bootdevice/by-name/expdb
+/seccfg         emmc    /dev/block/platform/bootdevice/by-name/seccfg
+/frp            emmc    /dev/block/platform/bootdevice/by-name/frp         flags=backup
+
+/nvdata         emmc    /dev/block/platform/bootdevice/by-name/nvdata      flags=backup
+/proinfo        emmc    /dev/block/platform/bootdevice/by-name/proinfo     flags=backup
+/nvram          emmc    /dev/block/platform/bootdevice/by-name/nvram       flags=backup
+/protect_f      emmc    /dev/block/platform/bootdevice/by-name/protect1    flags=backup
+/protect_s      emmc    /dev/block/platform/bootdevice/by-name/protect2    flags=backup
+
+/external_sd    auto    /dev/block/mmcblk1p1         /dev/block/mmcblk1
+/usb-otg        auto    /dev/block/sda1              /dev/block/sda        flags=storage;wipeingui;removable
